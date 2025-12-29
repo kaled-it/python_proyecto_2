@@ -29,7 +29,7 @@ if response.status_code == 200:
     if connection.is_connected():
         cursor = connection.cursor()
         
-        #cursor.execute("DROP TABLE IF EXISTS usuario") descomentar para eliminar tabla existente
+        #cursor.execute("DROP TABLE IF EXISTS paises") #descomentar para eliminar tabla existente
         
         cursor.execute(
             """
