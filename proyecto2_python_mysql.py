@@ -14,8 +14,8 @@ if response.status_code == 200:
         nombre = dic_pais['name']['official']
         capital =  dic_pais['capital'][0]
         region = dic_pais['region']
-        population = dic_pais['population']
-        rows.append([nombre, capital, region, population])
+        poblacion = dic_pais['population']
+        rows.append([nombre, capital, region, poblacion])
         
     headers = ['Nombre','Capital','Región','Población']
     print(tabulate(rows,headers,tablefmt='grid'))
@@ -29,7 +29,7 @@ if response.status_code == 200:
     if connection.is_connected():
         cursor = connection.cursor()
         
-        #cursor.execute("DROP TABLE IF EXISTS paises") #descomentar para eliminar tabla existente
+        cursor.execute("DROP TABLE IF EXISTS paises") #descomentar para eliminar tabla existente
         
         cursor.execute(
             """
@@ -38,7 +38,7 @@ if response.status_code == 200:
             nombre VARCHAR(225) not null,
             capital VARCHAR(225) not null,
             region varchar(225),
-            population INT
+            poblacion INT
             );
             """
         )
@@ -46,7 +46,7 @@ if response.status_code == 200:
         for paises in rows:   #INSERT DATOS
             cursor.execute(
                 """
-                insert into paises (nombre, capital, region, population)
+                insert into paises (nombre, capital, region, poblacion)
                 values(%s,%s,%s,%s)
                 """,
                 paises
